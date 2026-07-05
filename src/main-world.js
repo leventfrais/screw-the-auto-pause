@@ -18,12 +18,7 @@
     loggedActivation: false
   };
 
-  var suppressedEventTypes = {
-    blur: true,
-    focusout: true,
-    mouseleave: true,
-    mouseout: true,
-    pointerleave: true,
+  var alwaysSuppressedEventTypes = {
     visibilitychange: true,
     webkitvisibilitychange: true,
     mozvisibilitychange: true,
@@ -33,12 +28,17 @@
     pagehide: true
   };
 
+  var targetScopedEventTypes = {
+    blur: true,
+    focusout: true,
+    mouseleave: true,
+    mouseout: true,
+    pointerleave: true
+  };
+
   var handlerProperties = [
     "onblur",
     "onfocusout",
-    "onmouseleave",
-    "onmouseout",
-    "onpointerleave",
     "onvisibilitychange",
     "onwebkitvisibilitychange",
     "onmozvisibilitychange",
@@ -91,16 +91,57 @@
     return typeof listener === "function" || Boolean(listener && typeof listener.handleEvent === "function");
   }
 
-  function shouldManageType(type) {
-    return Boolean(suppressedEventTypes[normalizeType(type)]);
+  function isPageScopeTarget(target) {
+    try {
+      return target === window ||
+        target === document ||
+        target === document.documentElement ||
+        target === document.body;
+    } catch (error) {
+      return false;
+    }
   }
 
-  function shouldSuppressEvent(event) {
-    if (!event || !shouldManageType(event.type)) {
+  function isRelatedTargetInsideDocument(relatedTarget) {
+    try {
+      return Boolean(relatedTarget && document.documentElement && document.documentElement.contains(relatedTarget));
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function isElementInteractionEvent(event) {
+    if (!event) {
+      return false;
+    }
+
+    if (event.target && !isPageScopeTarget(event.target)) {
+      return true;
+    }
+
+    return isRelatedTargetInsideDocument(event.relatedTarget);
+  }
+
+  function shouldManageType(type, listenerTarget) {
+    var normalizedType = normalizeType(type);
+    return Boolean(alwaysSuppressedEventTypes[normalizedType]) ||
+      Boolean(targetScopedEventTypes[normalizedType] && isPageScopeTarget(listenerTarget));
+  }
+
+  function canDropListenerImmediately(type) {
+    return Boolean(alwaysSuppressedEventTypes[normalizeType(type)]);
+  }
+
+  function shouldSuppressEvent(event, listenerTarget) {
+    if (!event || !shouldManageType(event.type, listenerTarget)) {
       return false;
     }
 
     if (event.type === "pagehide" && event.persisted !== true && document.visibilityState === "visible") {
+      return false;
+    }
+
+    if (targetScopedEventTypes[normalizeType(event.type)] && isElementInteractionEvent(event)) {
       return false;
     }
 
@@ -134,8 +175,8 @@
 
   function wrappedAddEventListener(type, listener, options) {
     try {
-      if (shouldManageType(type)) {
-        if (state.enabled) {
+      if (shouldManageType(type, this)) {
+        if (state.enabled && canDropListenerImmediately(type)) {
           return undefined;
         }
 
@@ -161,7 +202,7 @@
         };
 
         record.wrapped = function guardedPresenceListener(event) {
-          if (shouldSuppressEvent(event)) {
+          if (shouldSuppressEvent(event, target)) {
             return undefined;
           }
 
@@ -189,7 +230,7 @@
 
   function wrappedRemoveEventListener(type, listener, options) {
     try {
-      if (shouldManageType(type)) {
+      if (shouldManageType(type, this)) {
         var capture = getCapture(options);
         var record = findRecord(this, type, listener, capture);
         if (record) {
@@ -206,7 +247,7 @@
 
   function wrappedDispatchEvent(event) {
     try {
-      if (shouldSuppressEvent(event)) {
+      if (shouldSuppressEvent(event, this)) {
         return true;
       }
     } catch (error) {
@@ -297,7 +338,7 @@
             wrappedValue = value;
           } else {
             wrappedValue = function guardedPresencePropertyHandler(event) {
-              if (shouldSuppressEvent(event)) {
+              if (shouldSuppressEvent(event, this)) {
                 return undefined;
               }
               return invokeListener(value, this, event);

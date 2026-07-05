@@ -100,11 +100,30 @@ def validate_assets() -> None:
         validate_png(ROOT / "icons" / f"icon{size}.png", size)
 
 
+def validate_event_policy() -> None:
+    main_world = (ROOT / "src/main-world.js").read_text(encoding="utf-8")
+    assert_true("var alwaysSuppressedEventTypes" in main_world, "Visibility/lifecycle events must stay explicitly suppressed")
+    assert_true("var targetScopedEventTypes" in main_world, "Pointer and focus events must be target-scoped")
+    assert_true("function isElementInteractionEvent" in main_world, "Element-level interaction guard is missing")
+    assert_true("function canDropListenerImmediately" in main_world, "Immediate listener dropping must be constrained")
+    assert_true("var suppressedEventTypes" not in main_world, "Global event suppression table should not return")
+
+    handler_start = main_world.index("var handlerProperties = [")
+    handler_end = main_world.index("  ];", handler_start)
+    handler_block = main_world[handler_start:handler_end]
+    for event_property in ("onmouseleave", "onmouseout", "onpointerleave"):
+        assert_true(event_property not in handler_block, f"{event_property} must not be globally property-guarded")
+
+    for event_type in ("mouseleave", "mouseout", "pointerleave"):
+        assert_true(f"{event_type}: true" in main_world, f"{event_type} should remain target-scoped, not removed blindly")
+
+
 def main() -> None:
     validate_manifest()
     validate_i18n_and_docs()
     validate_rule_behavior()
     validate_assets()
+    validate_event_policy()
     print("Extension validation passed")
 
 
