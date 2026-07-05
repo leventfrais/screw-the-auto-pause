@@ -1,0 +1,71 @@
+{
+  "extensionName": {
+    "message": "Screw The Auto Pause"
+  },
+  "extensionShortName": {
+    "message": "Auto Pause Off"
+  },
+  "extensionDescription": {
+    "message": "彻底阻止选中域名的网页因网页切换、浏览器切换（最小化，或者离开了当前浏览器等）所导致的视音频自动暂停"
+  },
+  "extensionDescriptionEnglish": {
+    "message": "Completely prevent video and audio from auto-pausing when switching tabs, switching browsers (minimizing, or leaving the current browser, etc.) on selected domains."
+  },
+  "popupTitle": {
+    "message": "Screw The Auto Pause"
+  },
+  "popupSubtitle": {
+    "message": "让选中域名始终保持可见、聚焦并持续播放。"
+  },
+  "currentDomainButton": {
+    "message": "添加当前域名 (Add current domain)"
+  },
+  "manualRuleLabel": {
+    "message": "通配符规则"
+  },
+  "manualRulePlaceholder": {
+    "message": "*example.com*"
+  },
+  "addRuleButton": {
+    "message": "+"
+  },
+  "removeRuleButton": {
+    "message": "-"
+  },
+  "rulesHeading": {
+    "message": "选中域名"
+  },
+  "emptyRules": {
+    "message": "尚未添加选中域名。"
+  },
+  "activeDomainUnavailable": {
+    "message": "当前页面无法读取活动标签页域名。"
+  },
+  "ruleAdded": {
+    "message": "规则已添加。"
+  },
+  "ruleAlreadyExists": {
+    "message": "该规则已存在。"
+  },
+  "ruleRemoved": {
+    "message": "规则已移除。"
+  },
+  "ruleInvalid": {
+    "message": "请输入有效的通配符规则。"
+  },
+  "storageError": {
+    "message": "存储更新失败。"
+  },
+  "footerNote": {
+    "message": "使用 + 添加通配符，使用 - 移除。"
+  },
+  "logActivated": {
+    "message": "Screw The Auto Pause 已在此选中域名启用。"
+  },
+  "logInactive": {
+    "message": "Screw The Auto Pause 未在此域名启用。"
+  },
+  "logStorageError": {
+    "message": "Screw The Auto Pause 无法读取已保存的规则。"
+  }
+}

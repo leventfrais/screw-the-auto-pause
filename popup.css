@@ -1,0 +1,192 @@
+:root {
+  color-scheme: light;
+  --background: #fdfbf7;
+  --surface: #ffffff;
+  --text: #2f2a24;
+  --muted: #6f665b;
+  --line: #e6dccb;
+  --line-strong: #d8c8b3;
+  --accent: #8a653c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 340px;
+  max-width: 380px;
+  margin: 0;
+  color: var(--text);
+  background: var(--background);
+  font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.panel {
+  padding: 18px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  flex: 0 0 auto;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.header p,
+.domain-preview,
+.empty-rules,
+.status,
+footer {
+  color: var(--muted);
+}
+
+.current-domain-button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 11px 12px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.current-domain-button:focus-visible,
+.rule-input-row input:focus,
+.rule-input-row button:focus-visible,
+.rule-remove:focus-visible {
+  outline: 2px solid #cbb38f;
+  outline-offset: 2px;
+}
+
+.current-domain-button:disabled {
+  color: #9a9185;
+  cursor: default;
+  background: #f8f2e8;
+}
+
+.domain-preview {
+  min-height: 20px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.rule-form {
+  margin-top: 14px;
+}
+
+.rule-form label,
+h2 {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 12px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.rule-input-row {
+  display: grid;
+  grid-template-columns: 1fr 38px;
+  gap: 8px;
+}
+
+.rule-input-row input {
+  width: 100%;
+  min-width: 0;
+  padding: 9px 10px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+
+.rule-input-row button,
+.rule-remove {
+  min-width: 38px;
+  min-height: 38px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.rules-section {
+  margin-top: 18px;
+}
+
+.rules-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rule-item {
+  display: grid;
+  grid-template-columns: 1fr 38px;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.rule-text {
+  overflow-wrap: anywhere;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+}
+
+.empty-rules {
+  display: none;
+  padding: 12px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.empty-rules.visible {
+  display: block;
+}
+
+.status {
+  min-height: 21px;
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+footer {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+}

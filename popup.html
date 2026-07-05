@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Screw The Auto Pause</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="panel">
+    <header class="header">
+      <img class="logo" src="icons/icon48.png" width="48" height="48" alt="">
+      <div>
+        <h1 data-i18n="popupTitle">Screw The Auto Pause</h1>
+        <p data-i18n="popupSubtitle">Selected domains stay visible, focused, and playing.</p>
+      </div>
+    </header>
+
+    <button id="add-current-domain" class="current-domain-button" type="button" data-i18n="currentDomainButton">
+      添加当前域名 (Add current domain)
+    </button>
+    <p id="current-domain-preview" class="domain-preview" aria-live="polite"></p>
+
+    <form id="rule-form" class="rule-form">
+      <label for="rule-input" data-i18n="manualRuleLabel">Wildcard rule</label>
+      <div class="rule-input-row">
+        <input id="rule-input" type="text" spellcheck="false" autocomplete="off" data-i18n-placeholder="manualRulePlaceholder" placeholder="*example.com*">
+        <button id="add-rule" type="submit" data-i18n="addRuleButton" data-i18n-label="addRuleButton">+</button>
+      </div>
+    </form>
+
+    <section class="rules-section" aria-labelledby="rules-heading">
+      <h2 id="rules-heading" data-i18n="rulesHeading">Selected domains</h2>
+      <ul id="rules-list" class="rules-list"></ul>
+      <p id="empty-rules" class="empty-rules" data-i18n="emptyRules">No selected domains yet.</p>
+    </section>
+
+    <p id="status" class="status" aria-live="polite"></p>
+    <footer data-i18n="footerNote">Use + to add a wildcard and - to remove it.</footer>
+  </main>
+
+  <script src="src/rules.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{
+  "extensionName": {
+    "message": "Screw The Auto Pause"
+  },
+  "extensionShortName": {
+    "message": "Auto Pause Off"
+  },
+  "extensionDescription": {
+    "message": "Completely prevent video and audio from auto-pausing when switching tabs, switching browsers (minimizing, or leaving the current browser, etc.) on selected domains."
+  },
+  "extensionDescriptionChinese": {
+    "message": "彻底阻止选中域名的网页因网页切换、浏览器切换（最小化，或者离开了当前浏览器等）所导致的视音频自动暂停"
+  },
+  "popupTitle": {
+    "message": "Screw The Auto Pause"
+  },
+  "popupSubtitle": {
+    "message": "Selected domains stay visible, focused, and playing."
+  },
+  "currentDomainButton": {
+    "message": "添加当前域名 (Add current domain)"
+  },
+  "manualRuleLabel": {
+    "message": "Wildcard rule"
+  },
+  "manualRulePlaceholder": {
+    "message": "*example.com*"
+  },
+  "addRuleButton": {
+    "message": "+"
+  },
+  "removeRuleButton": {
+    "message": "-"
+  },
+  "rulesHeading": {
+    "message": "Selected domains"
+  },
+  "emptyRules": {
+    "message": "No selected domains yet."
+  },
+  "activeDomainUnavailable": {
+    "message": "The active tab domain is unavailable on this page."
+  },
+  "ruleAdded": {
+    "message": "Rule added."
+  },
+  "ruleAlreadyExists": {
+    "message": "That rule already exists."
+  },
+  "ruleRemoved": {
+    "message": "Rule removed."
+  },
+  "ruleInvalid": {
+    "message": "Enter a valid wildcard rule."
+  },
+  "storageError": {
+    "message": "Storage update failed."
+  },
+  "footerNote": {
+    "message": "Use + to add a wildcard and - to remove it."
+  },
+  "logActivated": {
+    "message": "Screw The Auto Pause is active for this selected domain."
+  },
+  "logInactive": {
+    "message": "Screw The Auto Pause is inactive for this domain."
+  },
+  "logStorageError": {
+    "message": "Screw The Auto Pause could not read saved rules."
+  }
+}
