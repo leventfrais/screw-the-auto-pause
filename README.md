@@ -2,11 +2,11 @@
 
 **English description:** Completely prevent video and audio from auto-pausing when switching tabs, switching browsers (minimizing, or leaving the current browser, etc.) on selected domains.
 
-**中文描述：** 彻底阻止选中域名的网页因网页切换、浏览器切换（最小化，或者离开了当前浏览器等）所导致的视音频自动暂停
+**中文描述：** 彻底阻止选中域名的网页因网页切换、浏览器切换（最小化，或者离开了当前浏览器等）所导致的音视频自动暂停
 
 Screw The Auto Pause is a minimalist Manifest V3 Chrome extension for people who want selected media sites to keep treating the page as visible and focused while they switch tabs, minimize the browser, or work in another browser.
 
-Screw The Auto Pause 是一个极简 Manifest V3 Chrome 扩展，用于让选中的媒体网站在你切换网页、最小化浏览器或离开当前浏览器时，仍然将页面视为可见且处于聚焦状态。
+Screw The Auto Pause 是一个极简的 Manifest V3 Chrome 扩展，用于让选中的媒体网站在你切换网页、最小化浏览器或离开当前浏览器时，仍然将页面播放中的音频、视频视为可见且处于聚焦与持续播放状态。
 
 ## Features
 
@@ -88,22 +88,13 @@ Validate the workspace:
 python tools\validate.py
 ```
 
-## 开发检查
-
-生成图标：
-
-```powershell
-python tools\render-icons.py
-```
-
-验证工作区：
-
-```powershell
-python tools\validate.py
-```
-
 ## License
 
-This project is released into the public domain under The Unlicense.
+This project is open-source based on The Unlicense.
 
-本项目基于 The Unlicense 释放至公共领域。
+本项目基于 The Unlicense 开源。
+
+## Notify
+This program is co-developed with github copilot 
+
+本项目使用 copilot 辅助开发。
