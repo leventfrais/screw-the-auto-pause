@@ -1,7 +1,5 @@
 # Screw The Auto Pause
 
-English | [中文](README.zh-CN.md)
-
 Completely prevent video and audio from auto-pausing when switching tabs, switching browsers (minimizing, or leaving the current browser, etc.) on selected domains.
 
 Screw The Auto Pause is a minimalist Manifest V3 Chrome extension for people who want selected media sites to keep treating the page as visible and focused while they switch tabs, minimize the browser, or leave the current browser window.
