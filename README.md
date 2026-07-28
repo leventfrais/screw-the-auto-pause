@@ -53,10 +53,4 @@ Validate the workspace:
 python tools\validate.py
 ```
 
-## License
 
-This project is open-source based on The Unlicense.
-
-## Notify
-
-This program is co-developed with GitHub Copilot.
